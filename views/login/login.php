@@ -10,8 +10,8 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' )
 {
     if(isset($submit)) 
     {
-        if($login -> isValid()){
-
+        if(empty($login -> getError())){
+            $errors = $login -> isValid();
         } else {
             $errors = $login -> getError();
         }
@@ -25,28 +25,31 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' )
         <h1>Login</h1>
         <p id="nb">Nb: Seul l'administrateur peut se connecter</p>
 
-        <?php if($errors)
+        <?php if(!empty($errors['global']))
         {
-        ?>
-            <p class="error"><?php
-                echo $errors -> $error['global'];
-            ?></p>
-        <?php
+            ?>
+                <p class="error"><?php
+                    echo $errors['global'];
+                ?></p>
+            <?php
         }
         ?>
 
         <label for="">
             <p class='above'>Email</p>
-            <input type="email" name="email" placeholder="Email">
+            <input <?php if(!empty($errors['email'])): ?> style="border: 1px solid coral;" <?php endif ?> type="email" name="email" placeholder="Email" value="<?php if(isset($email)): echo $email; else: echo ""; endif ?>">
         </label>
-        <?php if(isset($error['email'])) {?>
-            <p class="error"><?php echo $error['email'] ?></p>
+        <?php if(!empty($errors['email'])) {?>
+            <p class="smallError"><?php echo $errors['email'] ?></p>
         <?php } ?>
 
         <label for="">
             <p class='above'>Password</p>
-            <input type="password" name="password" placeholder="Password">
+            <input <?php if(!empty($errors['password'])): ?> style="border: 1px solid coral;" <?php endif ?> type="password" name="password" placeholder="Password">
         </label>
+        <?php if(!empty($errors['password'])) {?>
+            <p class="smallError"><?php echo $errors['password'] ?></p>
+        <?php } ?>
 
         <button name="submit" type="submit">Submit</button>
     </form>

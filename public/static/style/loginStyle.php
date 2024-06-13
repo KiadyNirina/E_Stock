@@ -11,6 +11,8 @@
     margin-top: 15px;
     text-align: center;
     font-size: 12px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 form{
@@ -96,8 +98,14 @@ h1{
 .error{
     color: coral;
     font-size: 0.9rem;
-    font-weight: bold;
     text-align: center;
+}
+
+.smallError{
+    color: coral;
+    font-size: 11px;
+    margin-top: 0;
+    margin-bottom: 5px;
 }
 
 .options{

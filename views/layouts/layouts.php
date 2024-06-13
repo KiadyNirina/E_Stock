@@ -12,10 +12,10 @@
 
     </div>
     <style>
-        <?php 
-        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'global.php';
-        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'homeStyle.php';
-        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'loginStyle.php';
+        <?php
+        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'global.php';
+        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'homeStyle.php';
+        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'loginStyle.php';
         ?>
     </style>
 </body>
