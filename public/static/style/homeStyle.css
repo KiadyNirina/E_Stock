@@ -9,6 +9,8 @@
     display: flex;
     margin-bottom: 10px;
     align-items: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 hr{
@@ -16,20 +18,19 @@ hr{
 }
 
 .menu{
-    width: auto;
-    margin-right: auto;
-    margin-left: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .menu a{
     text-decoration: none;
     color: white;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 5px;
 }
 
 .menu img{
-    height: 40px;
+    height: 30px;
 }
 
 #formSearch{
@@ -43,3 +44,21 @@ hr{
     background: rgba(255, 255, 255, 0.168);
 }
 
+.add{
+    display: flex;
+    padding: 10px;
+}
+
+.add a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+}
+
+.add img{
+    height: 30px;
+}
