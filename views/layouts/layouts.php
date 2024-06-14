@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/static/style/global.css">
+    <link rel="stylesheet" href="/static/style/homeStyle.css">
+    <link rel="stylesheet" href="/static/style/loginStyle.css">
 </head>
 <body>
     <div class="mainContainer">
@@ -11,12 +14,5 @@
         <?php require $router -> content ?>
 
     </div>
-    <style>
-        <?php
-        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'global.php';
-        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'homeStyle.php';
-        require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'loginStyle.php';
-        ?>
-    </style>
 </body>
 </html>
