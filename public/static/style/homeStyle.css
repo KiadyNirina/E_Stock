@@ -61,7 +61,7 @@ hr{
 }
 
 .add a:hover{
-    padding: 11px;
+    background: rgba(255, 255, 255, 0.157);
 }
 
 .add img{
@@ -71,15 +71,17 @@ hr{
 ul{
     font-size: 15px;
     line-height: 30px;
-    margin: 30px;
+    margin-left: 30px;
     margin-top: 10px;
 }
 
 table{
-    margin-top: 10px;
+    margin-top: 30px;
     width: 100%;
-    padding: 10px;
+    padding: 2px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.535);
+    border-radius: 5px;
 }
 
 table img{
@@ -87,15 +89,20 @@ table img{
 }
 
 table img:hover{
-    height: 32px;
+    background: rgba(255, 255, 255, 0.223);
+    border-radius: 5px;
 }
 
 th{
     font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.105);
+}
+
+td{
+    font-size: 13px;
 }
 
 th, td{
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.535);
-    border-radius: 2px;
 }
