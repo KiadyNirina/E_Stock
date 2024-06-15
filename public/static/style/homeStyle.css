@@ -57,8 +57,45 @@ hr{
     border-radius: 10px;
     color: white;
     padding: 10px;
+    transition: 0.2s;
+}
+
+.add a:hover{
+    padding: 11px;
 }
 
 .add img{
     height: 30px;
+}
+
+ul{
+    font-size: 15px;
+    line-height: 30px;
+    margin: 30px;
+    margin-top: 10px;
+}
+
+table{
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+table img{
+    height: 30px;
+}
+
+table img:hover{
+    height: 32px;
+}
+
+th{
+    font-weight: 700;
+}
+
+th, td{
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.535);
+    border-radius: 2px;
 }
