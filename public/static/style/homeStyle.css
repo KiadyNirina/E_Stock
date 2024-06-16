@@ -1,7 +1,4 @@
 .table {
-    border: 1px solid rgb(118, 118, 118);
-    margin: 10px;
-    border-radius: 5px;
     padding: 20px;
 }
 
@@ -79,8 +76,7 @@ table{
     margin-top: 30px;
     width: 100%;
     padding: 2px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.535);
+    border: 1px solid rgba(255, 255, 255, 0.19);
     border-radius: 5px;
 }
 
@@ -104,5 +100,5 @@ td{
 
 th, td{
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.535);
+    border: 1px solid rgba(255, 255, 255, 0.19);
 }
