@@ -52,8 +52,20 @@ if ( $db -> connect() ) {
 
                     echo $resultat -> total;
                 ?> ariary</li>
-                <li><b>Total des équipements entrées : </b></li>
-                <li><b>Total des équipements sorties : </b></li>
+                <li><b>Total des équipements entrées : </b><?php 
+                    $stmts = $pdo -> prepare("SELECT type FROM entrées_sorties WHERE type = 'Entrée'");
+                    $stmts -> execute();
+                    $count = $stmts -> rowCount();
+
+                    echo $count;
+                ?></li>
+                <li><b>Total des équipements sorties : </b><?php 
+                    $stmts = $pdo -> prepare("SELECT type FROM entrées_sorties WHERE type = 'Sortie'");
+                    $stmts -> execute();
+                    $count = $stmts -> rowCount();
+
+                    echo $count;
+                ?></li>
             </ul>
             <div class="add">
                 <a href="">
