@@ -34,7 +34,7 @@ form label{
     border-radius: 5px;
 }
 
-form input{
+form input, textarea, select{
     width: 100%;
     border: none;
     background: transparent;

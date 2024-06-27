@@ -90,15 +90,23 @@ table img:hover{
 }
 
 th{
+    font-size: 13px;
     font-weight: 700;
     background-color: rgba(255, 255, 255, 0.105);
 }
 
 td{
     font-size: 13px;
+    line-height: 17px;
 }
 
 th, td{
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.19);
+    border-left: 1px solid rgba(255, 255, 255, 0.19);
+}
+
+#conf{
+    width: 25%;
+    font-size: 11px;
 }
