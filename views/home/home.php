@@ -4,16 +4,10 @@ use App\Bdd;
 
 $conn = new Bdd();
 
-// Connexion à la base de données
-if ( $conn -> connect() ) {
+if($conn -> connect()){
 
     // Exécution d'une requête
     $results = $conn -> run("SELECT * FROM entrées_sorties");
-
-    $inputSearch = htmlentities($_POST['searchI']);
-
-    $query = "SELECT * FROM entrées_sorties WHERE devis LIKE :searchTerm OR equipement LIKE :searchTerm";
-    $resultSearch = $conn -> search($query, $inputSearch);
 
 ?>
 
@@ -64,71 +58,124 @@ if ( $conn -> connect() ) {
         <table>
             <thead>
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">N° devis</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Configuration</th>
-                    <th scope="col">Prix unitaire</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Prix Total</th>
-                    <th scope="col">Fournisseur</th>
-                    <th scope="col">Date du commande</th>
-                    <th scope="col">Date de livraison</th>
-                    <th scope="col">Etat</th>
+                    <th scope="col"><a href="index.php?page=home&param=id">id</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=devis">N° devis</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=equipement">Nom</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=configuration">Configuration</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=prix_untaire">Prix unitaire</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=quantité">Nombres</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=prix_total">Prix Total</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=fournisseur">Fournisseur</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=commande">Date du commande</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=livraison">Date de livraison</a></th>
+                    <th scope="col"><a href="index.php?page=home&param=type">Etat</a></th>
                     <th scope="col">action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-            
-                if( !$resultSearch )
-                {   
-                   // Affichage des résultats
-                        foreach ($results as $row) {
 
-                            ?>
-                            <tr>
-                                <td><?php echo $row -> id ?></td>
-                                <td><?php echo $row -> devis ?></td>
-                                <td><?php echo $row -> equipement ?></td>
-                                <td id="conf"><?php echo $row -> configuration ?></td>
-                                <td><?php echo $row -> prix_unitaire . " ariary" ?></td>
-                                <td><?php echo $row -> quantité ?></td>
-                                <td><?php echo $row -> prix_total . " ariary" ?></td>
-                                <td><?php echo $row -> fournisseur ?></td>
-                                <td><?php echo $row -> commande ?></td>
-                                <td><?php echo $row -> livraison ?></td>
-                                <td><?php echo $row -> type ?></td>
-                                <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
-                            </tr>
-                            <?php
+                    @$inputSearch = htmlentities($_POST['searchI']);
+                    @$param = htmlentities($_GET['param']);
+
+                    $query = "SELECT * FROM entrées_sorties WHERE devis LIKE :searchTerm OR equipement LIKE :searchTerm";
+                    $resultSearch = $conn -> search($query, $inputSearch);
+
+                    if(isset($inputSearch) && !empty($inputSearch)){
+                        
+                        if (isset($param) && !empty($param)) {
+
+                            $searchFilterByParam = $conn -> search($query." ORDER BY $param DESC", $inputSearch);
+                            
+                            foreach ($searchFilterByParam as $result){
+                                ?>
+                                <tr>
+                                    <td><?php echo $result -> id ?></td>
+                                    <td><?php echo $result -> devis ?></td>
+                                    <td><?php echo $result -> equipement ?></td>
+                                    <td id="conf"><?php echo $result -> configuration ?></td>
+                                    <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
+                                    <td><?php echo $result -> quantité ?></td>
+                                    <td><?php echo $result -> prix_total . " ariary" ?></td>
+                                    <td><?php echo $result -> fournisseur ?></td>
+                                    <td><?php echo $result -> commande ?></td>
+                                    <td><?php echo $result -> livraison ?></td>
+                                    <td><?php echo $result -> type ?></td>
+                                    <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                </tr>
+                                <?php
+                            }
+
+                        } else {
+
+                            foreach ($resultSearch as $result){
+                                ?>
+                                <tr>
+                                    <td><?php echo $result -> id ?></td>
+                                    <td><?php echo $result -> devis ?></td>
+                                    <td><?php echo $result -> equipement ?></td>
+                                    <td id="conf"><?php echo $result -> configuration ?></td>
+                                    <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
+                                    <td><?php echo $result -> quantité ?></td>
+                                    <td><?php echo $result -> prix_total . " ariary" ?></td>
+                                    <td><?php echo $result -> fournisseur ?></td>
+                                    <td><?php echo $result -> commande ?></td>
+                                    <td><?php echo $result -> livraison ?></td>
+                                    <td><?php echo $result -> type ?></td>
+                                    <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                </tr>
+                                <?php
+                            }
 
                         }
-                } else {
 
-                    foreach ($resultSearch as $reSe) {
+                    } else {
+                        
+                        if (isset($param) && !empty($param)) {
 
-                        ?>
-                        <tr>
-                            <td><?php echo $reSe -> id ?></td>
-                            <td><?php echo $reSe -> devis ?></td>
-                            <td><?php echo $reSe -> equipement ?></td>
-                            <td id="conf"><?php echo $reSe -> configuration ?></td>
-                            <td><?php echo $reSe -> prix_unitaire . " ariary" ?></td>
-                            <td><?php echo $reSe -> quantité ?></td>
-                            <td><?php echo $reSe -> prix_total . " ariary" ?></td>
-                            <td><?php echo $reSe -> fournisseur ?></td>
-                            <td><?php echo $reSe -> commande ?></td>
-                            <td><?php echo $reSe -> livraison ?></td>
-                            <td><?php echo $reSe -> type ?></td>
-                            <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
-                        </tr>
-                        <?php
+                            $filterByParam = $conn -> run("SELECT * FROM entrées_sorties ORDER BY $param DESC");
+                            foreach ($filterByParam as $result){
+                                ?>
+                                <tr>
+                                    <td><?php echo $result -> id ?></td>
+                                    <td><?php echo $result -> devis ?></td>
+                                    <td><?php echo $result -> equipement ?></td>
+                                    <td id="conf"><?php echo $result -> configuration ?></td>
+                                    <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
+                                    <td><?php echo $result -> quantité ?></td>
+                                    <td><?php echo $result -> prix_total . " ariary" ?></td>
+                                    <td><?php echo $result -> fournisseur ?></td>
+                                    <td><?php echo $result -> commande ?></td>
+                                    <td><?php echo $result -> livraison ?></td>
+                                    <td><?php echo $result -> type ?></td>
+                                    <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                </tr>
+                                <?php
+                            }
 
+                        } else {
+
+                            foreach ($results as $result){
+                                ?>
+                                <tr>
+                                    <td><?php echo $result -> id ?></td>
+                                    <td><?php echo $result -> devis ?></td>
+                                    <td><?php echo $result -> equipement ?></td>
+                                    <td id="conf"><?php echo $result -> configuration ?></td>
+                                    <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
+                                    <td><?php echo $result -> quantité ?></td>
+                                    <td><?php echo $result -> prix_total . " ariary" ?></td>
+                                    <td><?php echo $result -> fournisseur ?></td>
+                                    <td><?php echo $result -> commande ?></td>
+                                    <td><?php echo $result -> livraison ?></td>
+                                    <td><?php echo $result -> type ?></td>
+                                    <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                </tr>
+                                <?php
+                            }
+
+                        }
                     }
-
-                }
-                    
                 ?>
             </tbody>
         </table>
@@ -136,7 +183,14 @@ if ( $conn -> connect() ) {
 </div>
 
 <?php
+
 } else {
-    echo 'Erreur de connexion';
+
+    ?>
+
+    <h1>Erreur de connexion</h1>
+
+    <?php    
+
 }
 ?>
