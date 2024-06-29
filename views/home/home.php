@@ -9,6 +9,13 @@ if($conn -> connect()){
     // Exécution d'une requête
     $results = $conn -> run("SELECT * FROM entrées_sorties");
 
+    @$inputSearch = htmlentities($_POST['search']);
+    @$filter = htmlentities($_GET['filter']);
+    //@$param = htmlentities($_GET['param']);
+
+    $query = "SELECT * FROM entrées_sorties WHERE devis LIKE :searchTerm OR equipement LIKE :searchTerm";
+    $resultSearch = $conn -> search($query, $inputSearch);
+
 ?>
 
 <div class="content">
@@ -17,8 +24,8 @@ if($conn -> connect()){
             <div class="menu">
                 <a href="">Logo</a>
                 <a href=""><img src="../../static/img/icons/accueil.png" alt=""></a>
-                <form id="formSearch" action="" method="POST">
-                    <input id="search" type="search" name="searchI" id="" placeholder="Entrer le numéro de devis ou le nom de l'équipement">
+                <form id="formSearch" action="" method="post">
+                    <input id="search" type="search" name="search" placeholder="Entrer le numéro de devis ou le nom de l'équipement">
                 </form>
                 <a href=""><img src="../../static/img/icons/profile.png" alt=""></a>
                 <a href=""><img src="../../static/img/icons/menu.png" alt=""></a>
@@ -53,39 +60,44 @@ if($conn -> connect()){
             </div>
         </div>
 
-        <hr>
+        <hr><br>
+
+        <?php
+        
+        if(isset($filter) && !empty($filter))
+        {
+            ?>
+            <p>Filtré par <b><?php echo $filter ?></b></p>
+            <?php
+        }
+
+        ?>
 
         <table>
             <thead>
                 <tr>
-                    <th scope="col"><a href="index.php?page=home&param=id">id</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=devis">N° devis</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=equipement">Nom</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=configuration">Configuration</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=prix_untaire">Prix unitaire</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=quantité">Nombres</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=prix_total">Prix Total</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=fournisseur">Fournisseur</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=commande">Date du commande</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=livraison">Date de livraison</a></th>
-                    <th scope="col"><a href="index.php?page=home&param=type">Etat</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=id">id</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=devis">N° devis</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=equipement">Equipement</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=configuration">Configuration</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=prix_unitaire">Prix unitaire</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=quantite">Quantités</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=prix_total">Prix Total</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=fournisseur">Fournisseur</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=commande">Date du commande</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=livraison">Date de livraison</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=type">Type</a></th>
                     <th scope="col">action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 
-                    @$inputSearch = htmlentities($_POST['searchI']);
-                    @$param = htmlentities($_GET['param']);
-
-                    $query = "SELECT * FROM entrées_sorties WHERE devis LIKE :searchTerm OR equipement LIKE :searchTerm";
-                    $resultSearch = $conn -> search($query, $inputSearch);
-
                     if(isset($inputSearch) && !empty($inputSearch)){
                         
-                        if (isset($param) && !empty($param)) {
+                        if (isset($filter) && !empty($filter)) {
 
-                            $searchFilterByParam = $conn -> search($query." ORDER BY $param DESC", $inputSearch);
+                            $searchFilterByParam = $conn -> search($query." ORDER BY $filter ASC", $inputSearch);
                             
                             foreach ($searchFilterByParam as $result){
                                 ?>
@@ -95,7 +107,7 @@ if($conn -> connect()){
                                     <td><?php echo $result -> equipement ?></td>
                                     <td id="conf"><?php echo $result -> configuration ?></td>
                                     <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
-                                    <td><?php echo $result -> quantité ?></td>
+                                    <td><?php echo $result -> quantite ?></td>
                                     <td><?php echo $result -> prix_total . " ariary" ?></td>
                                     <td><?php echo $result -> fournisseur ?></td>
                                     <td><?php echo $result -> commande ?></td>
@@ -116,7 +128,7 @@ if($conn -> connect()){
                                     <td><?php echo $result -> equipement ?></td>
                                     <td id="conf"><?php echo $result -> configuration ?></td>
                                     <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
-                                    <td><?php echo $result -> quantité ?></td>
+                                    <td><?php echo $result -> quantite ?></td>
                                     <td><?php echo $result -> prix_total . " ariary" ?></td>
                                     <td><?php echo $result -> fournisseur ?></td>
                                     <td><?php echo $result -> commande ?></td>
@@ -131,9 +143,9 @@ if($conn -> connect()){
 
                     } else {
                         
-                        if (isset($param) && !empty($param)) {
+                        if (isset($filter) && !empty($filter)) {
 
-                            $filterByParam = $conn -> run("SELECT * FROM entrées_sorties ORDER BY $param DESC");
+                            $filterByParam = $conn -> run("SELECT * FROM entrées_sorties ORDER BY $filter ASC");
                             foreach ($filterByParam as $result){
                                 ?>
                                 <tr>
@@ -142,7 +154,7 @@ if($conn -> connect()){
                                     <td><?php echo $result -> equipement ?></td>
                                     <td id="conf"><?php echo $result -> configuration ?></td>
                                     <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
-                                    <td><?php echo $result -> quantité ?></td>
+                                    <td><?php echo $result -> quantite ?></td>
                                     <td><?php echo $result -> prix_total . " ariary" ?></td>
                                     <td><?php echo $result -> fournisseur ?></td>
                                     <td><?php echo $result -> commande ?></td>
@@ -163,7 +175,7 @@ if($conn -> connect()){
                                     <td><?php echo $result -> equipement ?></td>
                                     <td id="conf"><?php echo $result -> configuration ?></td>
                                     <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
-                                    <td><?php echo $result -> quantité ?></td>
+                                    <td><?php echo $result -> quantite ?></td>
                                     <td><?php echo $result -> prix_total . " ariary" ?></td>
                                     <td><?php echo $result -> fournisseur ?></td>
                                     <td><?php echo $result -> commande ?></td>
