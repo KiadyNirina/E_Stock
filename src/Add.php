@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Bdd;
 
 class Add {
 
@@ -65,9 +66,12 @@ class Add {
         return $error;
     }
 
-    public function add()
+    public function add($query)
     {
-        return empty($this -> getError()) ;
+        $pdo = new Bdd();
+        $req = $pdo -> connect();
+        $result = $req -> prepare($query);
+        return $result -> execute();
     }
 
 }

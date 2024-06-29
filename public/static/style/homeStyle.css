@@ -110,3 +110,9 @@ th, td{
     width: 25%;
     font-size: 11px;
 }
+
+.success{
+    text-align: center;
+    background: green;
+    padding: 10px;
+}

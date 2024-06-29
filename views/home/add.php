@@ -17,6 +17,7 @@ if ( $conn -> connect() ) {
     @$configuration = htmlentities($_POST['conf']);
     @$prix_unit = htmlentities($_POST['prix_unitaire']);
     @$quantite = htmlentities($_POST['quantite']);
+    @$prix_total = (int)$prix_unit * (int)$quantite;
     @$fournisseur = htmlentities($_POST['fournisseur']);
     @$date_commande = htmlentities($_POST['commande']);
     @$date_livraison = htmlentities($_POST['livraison']);
@@ -25,21 +26,30 @@ if ( $conn -> connect() ) {
 
     $add = new Add($devis, $equipement, $configuration, $prix_unit, $quantite, $fournisseur, $date_commande, $date_livraison, $type);
 
-    if( isset($submit) ) {
-
-        if($add -> add()) {
-
-        } else {
-            $error = $add -> getError();
-        }
-
-    }
-
 ?>
 
-<div class="content">
-    <div class="content-body">
+<div class="authContainer">
         <form action="" method="post">
+            <?php
+
+            if( isset($submit) ) {
+
+                if(empty($add -> getError())) {
+                    $query = "INSERT INTO entrées_sorties(devis, equipement, configuration, prix_unitaire, quantite, prix_total, fournisseur, commande, livraison, type) VALUES ('$devis', '$equipement', '$configuration', '$prix_unit', '$quantite', '$prix_total', '$fournisseur', '$date_commande', '$date_livraison', '$type')";
+                    $add -> add($query);
+                    
+                    ?>
+                        <b class="success">Ajout avec succès</b>      
+                    <?php
+                
+                } else {
+                    $error = $add -> getError();
+                }
+        
+            }
+            
+            ?>
+            <h2>Ajout de nouveau équipement</h2>
             <input <?php if(!empty($error['devis'])): ?> style="border: 1px solid coral;" <?php endif ?> type="text" name="devis" placeholder="N° devis">
             <?php if(!empty($error['devis'])) {?>
                 <p class="smallError"><?php echo $error['devis'] ?></p>
@@ -76,6 +86,7 @@ if ( $conn -> connect() ) {
             <?php } ?>
 
             <input type="date" name="livraison" id="">
+            
             <select name="type" id="">
                 <?php foreach ( $results as $result ) { ?>
                 <option value="<?php echo $result -> type ?>">
@@ -86,7 +97,6 @@ if ( $conn -> connect() ) {
 
             <button type="submit" name="add">Ajouter</button>
         </form>
-    </div>
 </div>
 
 <?php
