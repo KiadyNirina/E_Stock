@@ -113,6 +113,12 @@ th, td{
 
 .success{
     text-align: center;
-    background: green;
+    color: green;
+    padding: 10px;
+}
+
+.error{
+    text-align: center;
+    color: coral;
     padding: 10px;
 }

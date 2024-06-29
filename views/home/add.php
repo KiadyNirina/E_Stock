@@ -44,19 +44,23 @@ if ( $conn -> connect() ) {
                 
                 } else {
                     $error = $add -> getError();
+
+                    ?>
+                        <b class="error">Erreur</b>      
+                    <?php
                 }
         
             }
             
             ?>
             <h2>Ajout de nouveau équipement</h2>
-            <input <?php if(!empty($error['devis'])): ?> style="border: 1px solid coral;" <?php endif ?> type="text" name="devis" placeholder="N° devis">
-            <?php if(!empty($error['devis'])) {?>
+            <input <?php if(isset($error['devis']) && !empty($error['devis'])): ?> style="border: 1px solid coral;" <?php endif ?> type="text" name="devis" placeholder="N° devis">
+            <?php if(isset($error['devis']) && !empty($error['devis'])) {?>
                 <p class="smallError"><?php echo $error['devis'] ?></p>
             <?php } ?>
 
-            <input <?php if(!empty($error['equipement'])): ?> style="border: 1px solid coral;" <?php endif ?> type="text" name="equipement" placeholder="Nom de l'équipement">
-            <?php if(!empty($error['equipement'])) {?>
+            <input <?php if(isset($error['equipement']) && !empty($error['equipement'])): ?> style="border: 1px solid coral;" <?php endif ?> type="text" name="equipement" placeholder="Nom de l'équipement">
+            <?php if(isset($error['equipement']) && !empty($error['equipement'])) {?>
                 <p class="smallError"><?php echo $error['equipement'] ?></p>
             <?php } ?>
 

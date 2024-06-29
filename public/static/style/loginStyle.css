@@ -95,12 +95,6 @@ h1{
     opacity: 0;
 }
 
-.error{
-    color: coral;
-    font-size: 0.9rem;
-    text-align: center;
-}
-
 .smallError{
     color: coral;
     font-size: 11px;

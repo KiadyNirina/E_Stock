@@ -6,18 +6,6 @@
 
 $login = new App\Login($email, $password);
 
-if( $_SERVER['REQUEST_METHOD'] === 'POST' ) 
-{
-    if(isset($submit)) 
-    {
-        if(empty($login -> getError())){
-            $errors = $login -> isValid();
-        } else {
-            $errors = $login -> getError();
-        }
-    }
-}
-
 ?>
 
 <div class="authContainer">
@@ -25,14 +13,24 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' )
         <h1>Login</h1>
         <p id="nb">Nb: Seul l'administrateur peut se connecter</p>
 
-        <?php if(!empty($errors['global']))
+        <?php 
+
+        if( $_SERVER['REQUEST_METHOD'] === 'POST' ) 
         {
-            ?>
-                <p class="error"><?php
-                    echo $errors['global'];
-                ?></p>
-            <?php
+            if(isset($submit)) 
+            {
+                if(empty($login -> getError())){
+                    $errors = $login -> isValid();
+                } else {
+                    $errors = $login -> getError();
+
+                    ?>
+                    <b class="error"><?php echo $errors['global'] ?></b>
+                    <?php
+                }
+            }
         }
+
         ?>
 
         <label for="">
