@@ -152,7 +152,7 @@ if($conn -> connect()){
                                     <td><?php echo $result -> id ?></td>
                                     <td><?php echo $result -> devis ?></td>
                                     <td><?php echo $result -> equipement ?></td>
-                                    <td id="conf"><?php echo $result -> configuration ?></td>
+                                    <td id="conf"><?php echo nl2br($result -> configuration) ?></td>
                                     <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
                                     <td><?php echo $result -> quantite ?></td>
                                     <td><?php echo $result -> prix_total . " ariary" ?></td>
@@ -173,7 +173,7 @@ if($conn -> connect()){
                                     <td><?php echo $result -> id ?></td>
                                     <td><?php echo $result -> devis ?></td>
                                     <td><?php echo $result -> equipement ?></td>
-                                    <td id="conf"><?php echo $result -> configuration ?></td>
+                                    <td id="conf"><?php echo nl2br($result -> configuration) ?></td>
                                     <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
                                     <td><?php echo $result -> quantite ?></td>
                                     <td><?php echo $result -> prix_total . " ariary" ?></td>
