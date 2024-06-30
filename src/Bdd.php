@@ -40,6 +40,17 @@ class Bdd {
         }
     }
 
+    public function runOne($query) {
+        try{
+            $stmt = $this -> pdo -> prepare($query);
+            $stmt -> execute();
+            return $stmt-> fetch(PDO::FETCH_OBJ); 
+        } catch (\PDOException $e) {
+            $errorStmt = "Erreur lors de l'envoye du requête : " . $e -> getMessage();
+            return $errorStmt;
+        }
+    }
+
     public function numRows($query) {
         try{
             $stmt = $this -> pdo -> prepare($query);

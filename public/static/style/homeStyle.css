@@ -89,6 +89,11 @@ table img:hover{
     border-radius: 5px;
 }
 
+table a{
+    color: white;
+    text-decoration: none;
+}
+
 th{
     font-size: 13px;
     font-weight: 700;

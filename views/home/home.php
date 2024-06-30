@@ -181,7 +181,7 @@ if($conn -> connect()){
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
                                     <td><?php echo $result -> type ?></td>
-                                    <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
                             }
