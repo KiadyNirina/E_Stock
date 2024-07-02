@@ -50,7 +50,8 @@ form label:focus-within{
     border-color: blue;
 }
 
-form button{
+form button,
+.form a{
     background: navy;
     color: white;
     border: none;
@@ -60,7 +61,13 @@ form button{
     font-size: 1rem;
 }
 
-form button:hover{
+.form a{
+    text-decoration: none;
+    text-align: center;
+}
+
+form a:hover,
+button:hover{
     background: blue;
 }
 

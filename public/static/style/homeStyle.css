@@ -127,3 +127,30 @@ th, td{
     color: coral;
     padding: 10px;
 }
+
+.deleteContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    margin:auto;
+    background: rgb(10, 10, 94);
+    border-radius: 10px;
+}
+
+.deleteContainer a,h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.deleteContainer a{
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 15px;
+    background: rgb(0, 0, 174);
+    border-radius: 5px;
+}
+
+.deleteContainer a:hover{
+    background-color: rgba(0, 0, 158, 0.544);
+}

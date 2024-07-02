@@ -22,11 +22,11 @@ class Router {
     {
         $page = $this -> param;
 
-        if(!empty($page) && in_array($page.".php", $this -> viewLogin)){
+        if(!empty($page) && in_array($page.".php", $this -> viewLogin) && empty($_SESSION['id'])){
 
             return $this -> content = $this -> viewPath . DIRECTORY_SEPARATOR . 'login' . DIRECTORY_SEPARATOR . $page.'.php';
         
-        }else if(!empty($page) && in_array($page.".php", $this -> viewHome)){
+        }else if(!empty($page) && in_array($page.".php", $this -> viewHome) && !empty($_SESSION['id'])){
         
             return $this -> content = $this -> viewPath . DIRECTORY_SEPARATOR . 'home' . DIRECTORY_SEPARATOR . $page.'.php';
         

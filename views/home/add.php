@@ -8,9 +8,6 @@ $conn = new Bdd();
 // Connexion à la base de données
 if ( $conn -> connect() ) {
 
-    // Exécution d'une requête
-    $results = $conn -> run("SELECT DISTINCT(type) FROM entrées_sorties");
-
     //Récupération du valeur des champs
     @$devis = htmlentities($_POST['devis']);
     @$equipement = htmlentities($_POST['equipement']);
@@ -28,7 +25,7 @@ if ( $conn -> connect() ) {
 ?>
 
 <div class="authContainer">
-        <form action="" method="post">
+        <form class="form" action="" method="post">
             <?php
 
             if( isset($submit) ) {
@@ -91,14 +88,12 @@ if ( $conn -> connect() ) {
             <input type="date" name="livraison" id="">
             
             <select name="type" id="">
-                <?php foreach ( $results as $result ) { ?>
-                <option value="<?php echo $result -> type ?>">
-                    <?php echo $result -> type ?>
-                </option>
-                <?php } ?>
+                <option value="Entrée">Entrée</option>
+                <option value="Sortie">Sortie</option>
             </select>
 
             <button type="submit" name="add">Ajouter</button>
+            <a href="index.php?page=home">Annuler</a>
         </form>
 </div>
 

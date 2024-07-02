@@ -28,7 +28,7 @@ if($conn -> connect()){
                     <input id="search" type="search" name="search" placeholder="Entrer le numéro de devis ou le nom de l'équipement">
                 </form>
                 <a href=""><img src="../../static/img/icons/profile.png" alt=""></a>
-                <a href=""><img src="../../static/img/icons/menu.png" alt=""></a>
+                <a onclick="return confirm('Êtes-vous sûr de vouloir vous déconnectez ?')" href="index.php?page=logout"><img src="../../static/img/icons/logout.png" alt=""></a>
             </div>
         </div>
         
@@ -113,7 +113,8 @@ if($conn -> connect()){
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
                                     <td><?php echo $result -> type ?></td>
-                                    <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
                             }
@@ -134,7 +135,8 @@ if($conn -> connect()){
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
                                     <td><?php echo $result -> type ?></td>
-                                    <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
                             }
@@ -160,7 +162,8 @@ if($conn -> connect()){
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
                                     <td><?php echo $result -> type ?></td>
-                                    <td><a href="a"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="b"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
                             }
@@ -181,7 +184,8 @@ if($conn -> connect()){
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
                                     <td><?php echo $result -> type ?></td>
-                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> <a href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
+                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
                             }

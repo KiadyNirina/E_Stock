@@ -32,10 +32,11 @@ if ( $conn -> connect() ) {
 
 ?>
 
-<div class="authContainer">
-    <h1 class="success">
-        Suppréssion avec succès    
-    </h1>
+<div class="deleteContainer">
+    <h2 class="success">
+        Suppression avec succès !
+    </h2>
+    <a href="index.php?page=home">Retour vers la page d'accueil</a>
 </div>
 
 <?php

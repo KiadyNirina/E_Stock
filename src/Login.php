@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Bdd;
 
 class Login{
 
@@ -35,8 +36,20 @@ class Login{
             $this -> errors['global'] = "Veuillez remplir les champs s'il vous plait!";
         }
 
-        if(!empty($this -> email) && !empty($this -> password) && $this -> email != "kiady142ram@gmail.com" || $this -> password != "kiadynirina") {
+        /*if(!empty($this -> email) && !empty($this -> password) && $this -> email != "kiady142ram@gmail.com" || $this -> password != "kiadynirina") {
             $this -> errors['global'] = "L'email ou le mot de passe n'est pas correcte";
+        }*/
+
+        if(!empty($this -> email) && !empty($this -> password)) {
+            $conn = new Bdd();
+            $result = $conn -> runOne('SELECT * FROM connexion');
+            
+            if( ($this -> email) === ($result -> email) && ($this -> password) === ($result -> password) ) {
+                $_SESSION['id'] = $result -> id;
+                header('locatio: index.php?page=home');
+            } else {
+                $this -> errors['global'] = "L'email ou le mot de passe n'est pas correcte";
+            }
         }
         
         return $this -> errors;

@@ -30,7 +30,7 @@ if ( $conn -> connect() ) {
 ?>
 
 <div class="authContainer">
-        <form action="" method="post">
+        <form class="form" action="" method="post">
             <?php
 
             if( isset($submit) ) {
@@ -93,10 +93,12 @@ if ( $conn -> connect() ) {
             <input type="date" name="livraison" id="" value="<?php echo $result -> livraison ?>">
             
             <select name="type" id="">
-                <?php echo $result -> type ?>
+                <option value="Entrée">Entrée</option>
+                <option value="Sortie">Sortie</option>
             </select>
 
             <button type="submit" name="add">Modifier</button>
+            <a href="index.php?page=home">Annuler</a>
         </form>
 </div>
 
