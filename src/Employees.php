@@ -108,6 +108,31 @@ class Employees {
         return $result->execute();
     }
 
+    public function update($id)
+    {
+        $pdo = new Bdd();
+        $req = $pdo->connect();
+
+        $query = "UPDATE employees SET matricule = :matricule, name = :name, lastname = :lastname, gender = :gender, birthday = :birthday,    status = :status, post = :post, Salary = :Salary, email = :email, tel = :tel, recrutment = :recrutment, end_contract = :end_contract WHERE id = :id";
+
+        $result = $req->prepare($query);
+        $result->bindParam(':matricule', $this -> matricule);
+        $result->bindParam(':name', $this -> name);
+        $result->bindParam(':lastname', $this -> lastname);
+        $result->bindParam(':gender', $this -> gender);
+        $result->bindParam(':birthday', $this -> birthday);
+        $result->bindParam(':status', $this -> status);
+        $result->bindParam(':post', $this -> post);
+        $result->bindParam(':Salary', $this -> salary);
+        $result->bindParam(':email', $this -> email);
+        $result->bindParam(':tel', $this -> tel);
+        $result->bindParam(':recrutment', $this -> recrutment);
+        $result->bindParam(':end_contract', $this -> end);
+        $result->bindParam(':id', $id);
+
+        return $result->execute();
+    }
+
 }
 
 ?>

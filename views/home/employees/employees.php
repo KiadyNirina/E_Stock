@@ -176,7 +176,7 @@ if($conn -> connect()){
                                     <td><?php echo $result -> tel ?></td>
                                     <td><?php echo $result -> recrutment ?></td>
                                     <td><?php echo $result -> end_contract ?></td>
-                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <td><a href="index.php?page=edit_employees&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
