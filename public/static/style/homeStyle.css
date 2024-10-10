@@ -1,3 +1,7 @@
+.content{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .table {
     padding: 20px;
 }
@@ -11,7 +15,7 @@
 }
 
 hr{
-    border: 1px solid rgb(118, 118, 118);
+    border: 1px solid rgba(255, 255, 255, 0.208);
 }
 
 .menu{
@@ -27,7 +31,8 @@ hr{
 }
 
 .menu img{
-    height: 30px;
+    height: 25px;
+    margin-right: 5px;
 }
 
 #formSearch{
@@ -76,8 +81,8 @@ table{
     margin-top: 30px;
     width: 100%;
     padding: 2px;
-    border: 1px solid rgba(255, 255, 255, 0.19);
-    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.115);
+    border-radius: 15px;
 }
 
 table img{
@@ -97,18 +102,19 @@ table a{
 th{
     font-size: 13px;
     font-weight: 700;
-    background-color: rgba(255, 255, 255, 0.105);
+    background-color: rgba(255, 255, 255, 0.052);
 }
 
 td{
-    font-size: 13px;
+    font-size: 12px;
     line-height: 17px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 th, td{
     padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.19);
-    border-left: 1px solid rgba(255, 255, 255, 0.19);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 #conf{

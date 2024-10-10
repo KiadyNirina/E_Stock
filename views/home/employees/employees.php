@@ -19,24 +19,26 @@ if($conn -> connect()){
 
 <div class="content">
     <div class="table">
-        <?php require 'nav.php' ?>
+        <?php require '../views/home/nav.php' ?>
         
         <hr>
         
         <div class="">
             <ul>
-                <li><b>Nombres des équipements total : </b>200</li>
-                <li><b>Prix total : </b><?php 
-                    $result = $conn -> run("SELECT SUM(prix_total) AS total FROM entrées_sorties");
-                    foreach ( $result as $re ){
-                        echo $re -> total;
-                    }
-                ?> ariary</li>
-                <li><b>Total des équipements entrées : </b><?php 
+                <li><b>Nombres total des employées : </b>200</li>
+                <li><b>Administrateur réseau : </b><?php 
                     $count = $conn -> numRows("SELECT type FROM entrées_sorties WHERE type = 'Entrée'");
                     echo $count;
                 ?></li>
-                <li><b>Total des équipements sorties : </b><?php 
+                <li><b>Administrateur Système : </b><?php 
+                    $count = $conn -> numRows("SELECT type FROM entrées_sorties WHERE type = 'Sortie'");
+                    echo $count;
+                ?></li>
+                <li><b>Développeur Web : </b><?php 
+                    $count = $conn -> numRows("SELECT type FROM entrées_sorties WHERE type = 'Sortie'");
+                    echo $count;
+                ?></li>
+                <li><b>Comptable : </b><?php 
                     $count = $conn -> numRows("SELECT type FROM entrées_sorties WHERE type = 'Sortie'");
                     echo $count;
                 ?></li>
@@ -65,18 +67,17 @@ if($conn -> connect()){
         <table>
             <thead>
                 <tr>
-                    <th scope="col"><a href="index.php?page=home&filter=id">id</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=devis">N° devis</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=equipement">Equipement</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=configuration">Configuration</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=prix_unitaire">Prix unitaire</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=quantite">Quantités</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=prix_total">Prix Total</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=fournisseur">Fournisseur</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=commande">Date du commande</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=livraison">Date de livraison</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=type">Type</a></th>
-                    <th scope="col">Action</th>
+                    <th scope="col"><a href="index.php?page=home&filter=id">N° matricule</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=devis">Photo</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=equipement">Nom</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=configuration">Prénom</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=prix_unitaire">Date de naissance</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=livraison">Situation familiale</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=quantite">Poste</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=prix_total">Salaire</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=fournisseur">Date de recrutement</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=commande">Date de fin contrat</a></th>
+                    <th scope="col">action</th>
                 </tr>
             </thead>
             <tbody>
@@ -101,7 +102,6 @@ if($conn -> connect()){
                                     <td><?php echo $result -> fournisseur ?></td>
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
-                                    <td><?php echo $result -> type ?></td>
                                     <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
@@ -123,7 +123,6 @@ if($conn -> connect()){
                                     <td><?php echo $result -> fournisseur ?></td>
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
-                                    <td><?php echo $result -> type ?></td>
                                     <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
@@ -150,7 +149,6 @@ if($conn -> connect()){
                                     <td><?php echo $result -> fournisseur ?></td>
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
-                                    <td><?php echo $result -> type ?></td>
                                     <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
@@ -172,7 +170,6 @@ if($conn -> connect()){
                                     <td><?php echo $result -> fournisseur ?></td>
                                     <td><?php echo $result -> commande ?></td>
                                     <td><?php echo $result -> livraison ?></td>
-                                    <td><?php echo $result -> type ?></td>
                                     <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>

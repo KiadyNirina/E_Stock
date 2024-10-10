@@ -8,6 +8,7 @@ class Router {
     public $param;
     public $viewLogin;
     public $viewHome;
+    public $viewEmployees;
     public $content;
 
     public function __construct($viewPath, $param)
@@ -16,6 +17,7 @@ class Router {
         $this -> param = $param;
         $this -> viewLogin = scandir($this -> viewPath . DIRECTORY_SEPARATOR . 'login');
         $this -> viewHome = scandir($this -> viewPath . DIRECTORY_SEPARATOR . 'home' );
+        $this -> viewEmployees = scandir($this -> viewPath . DIRECTORY_SEPARATOR . 'home' . DIRECTORY_SEPARATOR . 'employees');
     }
 
     public function get()
@@ -29,6 +31,10 @@ class Router {
         }else if(!empty($page) && in_array($page.".php", $this -> viewHome) && !empty($_SESSION['id'])){
         
             return $this -> content = $this -> viewPath . DIRECTORY_SEPARATOR . 'home' . DIRECTORY_SEPARATOR . $page.'.php';
+        
+        }else if(!empty($page) && in_array($page.".php", $this -> viewEmployees) && !empty($_SESSION['id'])){
+        
+            return $this -> content = $this -> viewPath . DIRECTORY_SEPARATOR . 'home' . DIRECTORY_SEPARATOR . 'employees' . DIRECTORY_SEPARATOR . $page.'.php';
         
         }else{
             return header("location: index.php?page=login");
