@@ -25,7 +25,10 @@ if($conn -> connect()){
         
         <div class="">
             <ul>
-                <li><b>Nombres des équipements total : </b>200</li>
+                <li><b>Nombres des équipements total : </b><?php 
+                    $count = $conn -> numRows("SELECT DISTINCT(equipement) FROM entrées_sorties");
+                    echo $count;
+                ?></li>
                 <li><b>Prix total : </b><?php 
                     $result = $conn -> run("SELECT SUM(prix_total) AS total FROM entrées_sorties");
                     foreach ( $result as $re ){

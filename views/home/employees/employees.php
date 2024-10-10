@@ -25,23 +25,20 @@ if($conn -> connect()){
         
         <div class="">
             <ul>
-                <li><b>Nombres total des employées : </b>200</li>
-                <li><b>Administrateur réseau : </b><?php 
-                    $count = $conn -> numRows("SELECT type FROM entrées_sorties WHERE type = 'Entrée'");
-                    echo $count;
-                ?></li>
-                <li><b>Administrateur Système : </b><?php 
-                    $count = $conn -> numRows("SELECT type FROM entrées_sorties WHERE type = 'Sortie'");
-                    echo $count;
-                ?></li>
-                <li><b>Développeur Web : </b><?php 
-                    $count = $conn -> numRows("SELECT type FROM entrées_sorties WHERE type = 'Sortie'");
-                    echo $count;
-                ?></li>
-                <li><b>Comptable : </b><?php 
-                    $count = $conn -> numRows("SELECT type FROM entrées_sorties WHERE type = 'Sortie'");
-                    echo $count;
-                ?></li>
+                <li><b>Nombres total des employées : </b><?php 
+                        $count = $conn -> numRows("SELECT * FROM employees");
+                        echo $count;
+                    ?></li>
+                <li><b>Nombres total des postes : </b><?php 
+                        $count = $conn -> numRows("SELECT DISTINCT(post) FROM employees");
+                        echo $count;
+                    ?></li>
+                <li><b>Salaire total : </b><?php 
+                    $count = $conn -> run("SELECT SUM(Salary) AS total FROM employees");
+                    foreach($count as $cou) {
+                        echo $cou -> total;
+                    }
+                ?> Ar</li>
             </ul>
             <div class="add">
                 <a href="index.php?page=add_employees">
@@ -95,17 +92,20 @@ if($conn -> connect()){
                             foreach ($searchFilterByParam as $result){
                                 ?>
                                 <tr>
-                                    <td><?php echo $result -> id ?></td>
-                                    <td><?php echo $result -> devis ?></td>
-                                    <td><?php echo $result -> equipement ?></td>
-                                    <td id="conf"><?php echo $result -> configuration ?></td>
-                                    <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
-                                    <td><?php echo $result -> quantite ?></td>
-                                    <td><?php echo $result -> prix_total . " ariary" ?></td>
-                                    <td><?php echo $result -> fournisseur ?></td>
-                                    <td><?php echo $result -> commande ?></td>
-                                    <td><?php echo $result -> livraison ?></td>
-                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <td><?php echo $result -> matricule ?></td>
+                                    <td><?php echo $result -> picture ?></td>
+                                    <td><?php echo $result -> name ?></td>
+                                    <td><?php echo $result -> lastname ?></td>
+                                    <td><?php echo $result -> gender ?></td>
+                                    <td><?php echo $result -> birthday ?></td>
+                                    <td><?php echo $result -> status ?></td>
+                                    <td><?php echo $result -> post ?></td>
+                                    <td><?php echo $result -> Salary . " ariary" ?></td>
+                                    <td><?php echo $result -> email ?></td>
+                                    <td><?php echo $result -> tel ?></td>
+                                    <td><?php echo $result -> recrutment ?></td>
+                                    <td><?php echo $result -> end_contract ?></td>
+                                    <td><a href="index.php?page=edit_employees&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
@@ -116,17 +116,20 @@ if($conn -> connect()){
                             foreach ($resultSearch as $result){
                                 ?>
                                 <tr>
-                                    <td><?php echo $result -> id ?></td>
-                                    <td><?php echo $result -> devis ?></td>
-                                    <td><?php echo $result -> equipement ?></td>
-                                    <td id="conf"><?php echo $result -> configuration ?></td>
-                                    <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
-                                    <td><?php echo $result -> quantite ?></td>
-                                    <td><?php echo $result -> prix_total . " ariary" ?></td>
-                                    <td><?php echo $result -> fournisseur ?></td>
-                                    <td><?php echo $result -> commande ?></td>
-                                    <td><?php echo $result -> livraison ?></td>
-                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <td><?php echo $result -> matricule ?></td>
+                                    <td><?php echo $result -> picture ?></td>
+                                    <td><?php echo $result -> name ?></td>
+                                    <td><?php echo $result -> lastname ?></td>
+                                    <td><?php echo $result -> gender ?></td>
+                                    <td><?php echo $result -> birthday ?></td>
+                                    <td><?php echo $result -> status ?></td>
+                                    <td><?php echo $result -> post ?></td>
+                                    <td><?php echo $result -> Salary . " ariary" ?></td>
+                                    <td><?php echo $result -> email ?></td>
+                                    <td><?php echo $result -> tel ?></td>
+                                    <td><?php echo $result -> recrutment ?></td>
+                                    <td><?php echo $result -> end_contract ?></td>
+                                    <td><a href="index.php?page=edit_employees&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
@@ -142,17 +145,20 @@ if($conn -> connect()){
                             foreach ($filterByParam as $result){
                                 ?>
                                 <tr>
-                                    <td><?php echo $result -> id ?></td>
-                                    <td><?php echo $result -> devis ?></td>
-                                    <td><?php echo $result -> equipement ?></td>
-                                    <td id="conf"><?php echo nl2br($result -> configuration) ?></td>
-                                    <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
-                                    <td><?php echo $result -> quantite ?></td>
-                                    <td><?php echo $result -> prix_total . " ariary" ?></td>
-                                    <td><?php echo $result -> fournisseur ?></td>
-                                    <td><?php echo $result -> commande ?></td>
-                                    <td><?php echo $result -> livraison ?></td>
-                                    <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <td><?php echo $result -> matricule ?></td>
+                                    <td><?php echo $result -> picture ?></td>
+                                    <td><?php echo $result -> name ?></td>
+                                    <td><?php echo $result -> lastname ?></td>
+                                    <td><?php echo $result -> gender ?></td>
+                                    <td><?php echo $result -> birthday ?></td>
+                                    <td><?php echo $result -> status ?></td>
+                                    <td><?php echo $result -> post ?></td>
+                                    <td><?php echo $result -> Salary . " ariary" ?></td>
+                                    <td><?php echo $result -> email ?></td>
+                                    <td><?php echo $result -> tel ?></td>
+                                    <td><?php echo $result -> recrutment ?></td>
+                                    <td><?php echo $result -> end_contract ?></td>
+                                    <td><a href="index.php?page=edit_employees&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php

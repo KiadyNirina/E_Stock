@@ -77,10 +77,6 @@ class Employees {
             $error['recrutment'] = "Veuillez remplir la date de recrutement"; 
         }
 
-        if (empty($this -> end)) {
-            $error['end'] = "Veuillez remplir la date de fin du contract"; 
-        }
-
         return $error;
     }
 

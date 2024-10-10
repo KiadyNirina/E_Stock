@@ -112,10 +112,7 @@ if ( $conn -> connect() ) {
                 <p class="smallError"><?php echo $error['recrutment'] ?></p>
             <?php } ?>
 
-            <input <?php if(!empty($error['end'])): ?> style="border: 1px solid coral;" <?php endif ?> type="date" name="end" id="">
-            <?php if(!empty($error['end'])) {?>
-                <p class="smallError"><?php echo $error['end'] ?></p>
-            <?php } ?>
+            <input type="date" name="end" id="">
 
             <button type="submit" name="add">Ajouter</button>
             <a href="index.php?page=employees">Annuler</a>
