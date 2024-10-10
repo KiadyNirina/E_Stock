@@ -1,7 +1,7 @@
 <?php
 
 use App\Bdd;
-use App\Add;
+use App\Employees;
 
 $conn = new Bdd();
 
@@ -21,8 +21,9 @@ if ( $conn -> connect() ) {
     @$tel = htmlentities($_POST['tel']);
     @$recrutment = htmlentities($_POST['recrutment']);
     @$end = htmlentities($_POST['end']);
+    @$submit = htmlentities($_POST['add']);
 
-    @$add = new Add($devis, $equipement, $configuration, $prix_unit, $quantite, $fournisseur, $date_commande, $date_livraison, $type);
+    @$employees = new Employees($matricule, $name, $lastname, $gender, $birthday, $status, $post, $salary, $email, $tel, $recrutment, $end);
 
 ?>
 
@@ -32,16 +33,16 @@ if ( $conn -> connect() ) {
 
             if( isset($submit) ) {
 
-                if(empty($add -> getError())) {
+                if(empty($employees -> getError())) {
                     
-                    $add -> add();
+                    // $employees -> add();
                     
                     ?>
                         <b class="success">Ajout avec succès</b>      
                     <?php
                 
                 } else {
-                    $error = $add -> getError();
+                    $error = $employees -> getError();
 
                     ?>
                         <b class="error">Erreur</b>      
@@ -96,15 +97,28 @@ if ( $conn -> connect() ) {
                 <p class="smallError"><?php echo $error['salary'] ?></p>
             <?php } ?>
             
-            <input type="email" name="email" placeholder="Etrez son email">
+            <input <?php if(!empty($error['email'])): ?> style="border: 1px solid coral;" <?php endif ?> type="email" name="email" placeholder="Etrez son email">
+            <?php if(!empty($error['email'])) {?>
+                <p class="smallError"><?php echo $error['email'] ?></p>
+            <?php } ?>
 
-            <input type="number" name="tel" id="" placeholder="Entrer son tel">
+            <input <?php if(!empty($error['tel'])): ?> style="border: 1px solid coral;" <?php endif ?> type="number" name="tel" id="" placeholder="Entrer son tel">
+            <?php if(!empty($error['tel'])) {?>
+                <p class="smallError"><?php echo $error['tel'] ?></p>
+            <?php } ?>
 
-            <input type="date" name="recrutment" id="">
-            <input type="date" name="end" id="">
+            <input <?php if(!empty($error['recrutment'])): ?> style="border: 1px solid coral;" <?php endif ?> type="date" name="recrutment" id="">
+            <?php if(!empty($error['recrutment'])) {?>
+                <p class="smallError"><?php echo $error['recrutment'] ?></p>
+            <?php } ?>
+
+            <input <?php if(!empty($error['end'])): ?> style="border: 1px solid coral;" <?php endif ?> type="date" name="end" id="">
+            <?php if(!empty($error['end'])) {?>
+                <p class="smallError"><?php echo $error['end'] ?></p>
+            <?php } ?>
 
             <button type="submit" name="add">Ajouter</button>
-            <a href="index.php?page=home">Annuler</a>
+            <a href="index.php?page=employees">Annuler</a>
         </form>
 </div>
 

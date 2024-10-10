@@ -44,7 +44,7 @@ if($conn -> connect()){
                 ?></li>
             </ul>
             <div class="add">
-                <a href="index.php?page=add">
+                <a href="index.php?page=add_employees">
                     <img src="../../static/img/icons/ajouter.png" alt="">
                     <span>Ajouter</span>
                 </a>
