@@ -84,6 +84,30 @@ class Employees {
         return $error;
     }
 
+    public function add()
+    {
+        $pdo = new Bdd();
+        $req = $pdo->connect();
+        
+        $query = "INSERT INTO employees (matricule, name, lastname, gender, birthday, status, post, Salary, email, tel, recrutment, end_contract) VALUES (:matricule, :name, :lastname, :gender, :birthday, :status, :post, :Salary, :email, :tel, :recrutment, :end_contract)";
+        
+        $result = $req->prepare($query);
+        $result->bindParam(':matricule', $this -> matricule);
+        $result->bindParam(':name', $this -> name);
+        $result->bindParam(':lastname', $this -> lastname);
+        $result->bindParam(':gender', $this -> gender);
+        $result->bindParam(':birthday', $this -> birthday);
+        $result->bindParam(':status', $this -> status);
+        $result->bindParam(':post', $this -> post);
+        $result->bindParam(':Salary', $this -> salary);
+        $result->bindParam(':email', $this -> email);
+        $result->bindParam(':tel', $this -> tel);
+        $result->bindParam(':recrutment', $this -> recrutment);
+        $result->bindParam(':end_contract', $this -> end);
+
+        return $result->execute();
+    }
+
 }
 
 ?>

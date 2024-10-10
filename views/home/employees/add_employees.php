@@ -35,7 +35,7 @@ if ( $conn -> connect() ) {
 
                 if(empty($employees -> getError())) {
                     
-                    // $employees -> add();
+                    $employees -> add();
                     
                     ?>
                         <b class="success">Ajout avec succès</b>      

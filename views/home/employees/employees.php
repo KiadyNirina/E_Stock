@@ -7,12 +7,12 @@ $conn = new Bdd();
 if($conn -> connect()){
 
     // Exécution d'une requête
-    $results = $conn -> run("SELECT * FROM entrées_sorties");
+    $results = $conn -> run("SELECT * FROM employees");
 
     @$inputSearch = htmlentities($_POST['search']);
     @$filter = htmlentities($_GET['filter']);
 
-    $query = "SELECT * FROM entrées_sorties WHERE devis LIKE :searchTerm OR equipement LIKE :searchTerm";
+    $query = "SELECT * FROM employees WHERE matricule LIKE :searchTerm OR name LIKE :searchTerm OR lastname LIKE :searchTerm";
     $resultSearch = $conn -> search($query, $inputSearch);
 
 ?>
@@ -163,16 +163,19 @@ if($conn -> connect()){
                             foreach ($results as $result){
                                 ?>
                                 <tr>
-                                    <td><?php echo $result -> id ?></td>
-                                    <td><?php echo $result -> devis ?></td>
-                                    <td><?php echo $result -> equipement ?></td>
-                                    <td id="conf"><?php echo nl2br($result -> configuration) ?></td>
-                                    <td><?php echo $result -> prix_unitaire . " ariary" ?></td>
-                                    <td><?php echo $result -> quantite ?></td>
-                                    <td><?php echo $result -> prix_total . " ariary" ?></td>
-                                    <td><?php echo $result -> fournisseur ?></td>
-                                    <td><?php echo $result -> commande ?></td>
-                                    <td><?php echo $result -> livraison ?></td>
+                                    <td><?php echo $result -> matricule ?></td>
+                                    <td><?php echo $result -> picture ?></td>
+                                    <td><?php echo $result -> name ?></td>
+                                    <td><?php echo $result -> lastname ?></td>
+                                    <td><?php echo $result -> gender ?></td>
+                                    <td><?php echo $result -> birthday ?></td>
+                                    <td><?php echo $result -> status ?></td>
+                                    <td><?php echo $result -> post ?></td>
+                                    <td><?php echo $result -> Salary . " ariary" ?></td>
+                                    <td><?php echo $result -> email ?></td>
+                                    <td><?php echo $result -> tel ?></td>
+                                    <td><?php echo $result -> recrutment ?></td>
+                                    <td><?php echo $result -> end_contract ?></td>
                                     <td><a href="index.php?page=edit&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
