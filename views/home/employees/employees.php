@@ -71,10 +71,13 @@ if($conn -> connect()){
                     <th scope="col"><a href="index.php?page=home&filter=devis">Photo</a></th>
                     <th scope="col"><a href="index.php?page=home&filter=equipement">Nom</a></th>
                     <th scope="col"><a href="index.php?page=home&filter=configuration">Prénom</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=configuration">Sexe</a></th>
                     <th scope="col"><a href="index.php?page=home&filter=prix_unitaire">Date de naissance</a></th>
                     <th scope="col"><a href="index.php?page=home&filter=livraison">Situation familiale</a></th>
                     <th scope="col"><a href="index.php?page=home&filter=quantite">Poste</a></th>
                     <th scope="col"><a href="index.php?page=home&filter=prix_total">Salaire</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=prix_total">Email</a></th>
+                    <th scope="col"><a href="index.php?page=home&filter=prix_total">Tel</a></th>
                     <th scope="col"><a href="index.php?page=home&filter=fournisseur">Date de recrutement</a></th>
                     <th scope="col"><a href="index.php?page=home&filter=commande">Date de fin contrat</a></th>
                     <th scope="col">action</th>

@@ -40,6 +40,7 @@ form input, textarea, select{
     background: transparent;
     color: white;
     padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.135);
 }
 
 form input:focus{
