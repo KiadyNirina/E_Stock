@@ -141,7 +141,7 @@ if($conn -> connect()){
                         
                         if (isset($filter) && !empty($filter)) {
 
-                            $filterByParam = $conn -> run("SELECT * FROM entrées_sorties ORDER BY $filter ASC");
+                            $filterByParam = $conn -> run("SELECT * FROM employees ORDER BY $filter ASC");
                             foreach ($filterByParam as $result){
                                 ?>
                                 <tr>
