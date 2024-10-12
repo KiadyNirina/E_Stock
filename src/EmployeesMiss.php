@@ -51,6 +51,19 @@ class EmployeesMiss {
         return $result->execute();
     }
 
+    public function delete($id)
+    {
+        $pdo = new Bdd();
+        $req = $pdo->connect();
+
+        $query = "DELETE FROM employees_missing WHERE id = :id";
+        
+        $result = $req -> prepare($query);
+        $result -> bindParam(':id', $id);
+
+        return $result -> execute();
+    }
+
 }
 
 ?>
