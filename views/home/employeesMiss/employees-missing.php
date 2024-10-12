@@ -48,8 +48,8 @@ if($conn -> connect()){
         <table>
             <thead>
                 <tr>
-                    <th scope="col"><a href="index.php?page=home&filter=id">Date</a></th>
-                    <th scope="col"><a href="index.php?page=home&filter=devis">Absents</a></th>
+                    <th scope="col"><a href="index.php?page=employees-missing&filter=date">Date</a></th>
+                    <th scope="col"><a href="index.php?page=employees&filter=missing">Absents</a></th>
                     <th scope="col">action</th>
                 </tr>
             </thead>
@@ -65,7 +65,10 @@ if($conn -> connect()){
                             foreach ($searchFilterByParam as $result){
                                 ?>
                                 <tr>
-
+                                    <td><?php echo $result -> date ?></td>
+                                    <td><?php echo $result -> missing ?></td>
+                                    <td><a href="index.php?page=edit_employees_missing&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete_employees_missing&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
                             }
@@ -75,7 +78,10 @@ if($conn -> connect()){
                             foreach ($resultSearch as $result){
                                 ?>
                                 <tr>
-
+                                    <td><?php echo $result -> date ?></td>
+                                    <td><?php echo $result -> missing ?></td>
+                                    <td><a href="index.php?page=edit_employees_missing&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete_employees_missing&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
                             }
@@ -86,11 +92,14 @@ if($conn -> connect()){
                         
                         if (isset($filter) && !empty($filter)) {
 
-                            $filterByParam = $conn -> run("SELECT * FROM employees ORDER BY $filter ASC");
+                            $filterByParam = $conn -> run("SELECT * FROM employees_missing ORDER BY $filter ASC");
                             foreach ($filterByParam as $result){
                                 ?>
                                 <tr>
-
+                                    <td><?php echo $result -> date ?></td>
+                                    <td><?php echo $result -> missing ?></td>
+                                    <td><a href="index.php?page=edit_employees_missing&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete_employees_missing&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
                             }
