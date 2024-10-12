@@ -1,7 +1,7 @@
 <?php
 
 use App\Bdd;
-use App\Employees;
+use App\EmployeesMiss;
 
 $conn = new Bdd();
 
