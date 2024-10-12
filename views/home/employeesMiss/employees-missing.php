@@ -24,22 +24,6 @@ if($conn -> connect()){
         <hr>
         
         <div class="">
-            <ul>
-                <li><b>Nombres total des employées : </b><?php 
-                        $count = $conn -> numRows("SELECT * FROM employees");
-                        echo $count;
-                    ?></li>
-                <li><b>Nombres total des postes : </b><?php 
-                        $count = $conn -> numRows("SELECT DISTINCT(post) FROM employees");
-                        echo $count;
-                    ?></li>
-                <li><b>Salaire total : </b><?php 
-                    $count = $conn -> run("SELECT SUM(Salary) AS total FROM employees");
-                    foreach($count as $cou) {
-                        echo $cou -> total;
-                    }
-                ?> Ar</li>
-            </ul>
             <div class="add">
                 <a href="index.php?page=add_employees">
                     <img src="../../static/img/icons/ajouter.png" alt="">
@@ -116,8 +100,8 @@ if($conn -> connect()){
                             foreach ($results as $result){
                                 ?>
                                 <tr>
-                                    <td><?php echo $result -> matricule ?></td>
-                                    <td><?php echo $result -> picture ?></td>
+                                    <td><?php echo $result -> date ?></td>
+                                    <td><?php echo $result -> missing ?></td>
                                     <td><a href="index.php?page=edit_employees&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
