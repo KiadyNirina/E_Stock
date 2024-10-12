@@ -37,6 +37,20 @@ class EmployeesMiss {
         return $result->execute();
     }
 
+    public function update($id)
+    {
+        $pdo = new Bdd();
+        $req = $pdo->connect();
+
+        $query = "UPDATE employees_missing SET missing = :missing WHERE id = :id";
+
+        $result = $req->prepare($query);
+        $result->bindParam(':missing', $this -> missing);
+        $result->bindParam(':id', $id);
+
+        return $result->execute();
+    }
+
 }
 
 ?>

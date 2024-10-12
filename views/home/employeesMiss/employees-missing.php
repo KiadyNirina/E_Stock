@@ -102,7 +102,7 @@ if($conn -> connect()){
                                 <tr>
                                     <td><?php echo $result -> date ?></td>
                                     <td><?php echo $result -> missing ?></td>
-                                    <td><a href="index.php?page=edit_employees&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
+                                    <td><a href="index.php?page=edit_employees_missing&id=<?php echo $result -> id ?>"><img src="/static/img/icons/modifier.png" alt=""></a> 
                                     <a onclick="return confirm('Êtes-vous sûr de vouloir la supprimer?')" href="index.php?page=delete&id=<?php echo $result -> id ?>"><img src="/static/img/icons/supprimer.png" alt=""></a></td>
                                 </tr>
                                 <?php
