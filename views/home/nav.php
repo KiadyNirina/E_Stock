@@ -14,7 +14,11 @@
                 </a>
 
                 <a href="index.php?page=employees-missing">
-                    <img src="../../static/img/icons/absent.png" alt="">
+                    <?php if($param == 'employees-missing') { ?>
+                        <img src="../../static/img/icons/absent-active.png" alt="">
+                    <?php } else { ?>
+                        <img src="../../static/img/icons/absent.png" alt="">
+                    <?php } ?>
                 </a>
                 
                 <a href="index.php?page=home">
