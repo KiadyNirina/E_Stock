@@ -9,11 +9,10 @@ $conn = new Bdd();
 if ( $conn -> connect() ) {
 
     //Récupération du valeur des champs
-    @$date = htmlentities($_POST['date']);
     @$missing = htmlentities($_POST['missing']);
     @$submit = htmlentities($_POST['add']);
 
-    @$employeesMiss = new EmployeesMiss($date, $absents);
+    @$employeesMiss = new EmployeesMiss($missing);
 
 ?>
 
@@ -32,7 +31,7 @@ if ( $conn -> connect() ) {
                     <?php
                 
                 } else {
-                    $error = $employeesMiss -> getError();
+                    @$error = $employeesMiss -> getError();
 
                     ?>
                         <b class="error">Erreur</b>      
@@ -42,11 +41,8 @@ if ( $conn -> connect() ) {
             }
             
             ?>
-            <h2>Ajout de nouveau employé</h2>
-            <input <?php if(!empty($error['date'])): ?> style="border: 1px solid coral;" <?php endif ?> type="text" name="date" placeholder="Date d'aujourd'hui">
-            <?php if(!empty($error['date'])) {?>
-                <p class="smallError"><?php echo $error['date'] ?></p>
-            <?php } ?>
+            <h2>Ajout du liste des employés absents</h2>
+            <p style="font-size: 12px;">Ajourd'hui le <?php echo date('l jS F Y à h:i:s A')?></p>
 
             <textarea <?php if(!empty($error['missing'])): ?> style="border: 1px solid coral;" <?php endif ?> type="text" name="missing" placeholder="Nom des employé(e)s"></textarea>
             <?php if(!empty($error['missing'])) {?>

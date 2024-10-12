@@ -25,7 +25,7 @@ if($conn -> connect()){
         
         <div class="">
             <div class="add">
-                <a href="index.php?page=add_employees">
+                <a href="index.php?page=add_employees_missing">
                     <img src="../../static/img/icons/ajouter.png" alt="">
                     <span>Ajouter</span>
                 </a>
